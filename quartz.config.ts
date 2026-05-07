@@ -1,31 +1,22 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
-/**
- * Quartz 4 Configuration
- *
- * See https://quartz.jzhao.xyz/configuration for more information.
- */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
+    pageTitle: "Zshy's Wiki",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: "plausible",
-    },
-    locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    locale: "zh-CN",
+    baseUrl: "zshysoft.github.io/wiki",
+    ignorePatterns: ["private", "templates", ".obsidian", "Attachments", "attachments", "模板", "附件", "脚本", "数据", "日程"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
-      cdnCaching: true,
+      fontOrigin: "systemFonts",
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "sans-serif",
+        body: "sans-serif",
+        code: "monospace",
       },
       colors: {
         lightMode: {
@@ -57,7 +48,7 @@ const config: QuartzConfig = {
     transformers: [
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "git", "filesystem"],
+        priority: ["filesystem"],
       }),
       Plugin.SyntaxHighlighting({
         theme: {
@@ -71,7 +62,6 @@ const config: QuartzConfig = {
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
-      Plugin.Latex({ renderEngine: "katex" }),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
@@ -88,8 +78,6 @@ const config: QuartzConfig = {
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
     ],
   },
 }
